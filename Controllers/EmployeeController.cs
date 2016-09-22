@@ -1,7 +1,5 @@
 ﻿namespace EmployeeDirectory.Controllers
 {
-    using System;
-    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
     using Infrastructure;
@@ -64,16 +62,20 @@
         [RequirePermission(Permission.ManageSecurity)]
         public async Task<IActionResult> EditRoles(int id)
         {
+            //Create the model for the Employee using their id
             var model = await CreateEmployeeEditRoleModel(id);
 
+            // Get a list of Roles that are assigned to the employee
             var employeeRoles = await _dbContext
                 .EmployeeRole
                 .Where(er => er.Employee.Id == id)
                 .ToListAsync();
 
+            //Loop through the roles in the model and if the employee belongs to a role
+            //then set the IsSelected boolean to true.
             foreach (var role in model.Roles)
             {
-                role.IsSelected = employeeRoles.Any(er => er.Role.Id == role.Id);
+                role.IsSelected = employeeRoles.Any(er => er.RoleId == role.Id);
             }
 
 
@@ -82,6 +84,7 @@
 
         private async Task<EmployeeEditRoleModel> CreateEmployeeEditRoleModel(int id)
         {
+            //Get all roles and put in a list
             var allRoles = await _dbContext.Role
                 .Select(role => new EmployeeEditRoleModel.EmployeeRoleModel
                 {
@@ -92,8 +95,8 @@
 
             var model = new EmployeeEditRoleModel
             {
-                Id = id,
-                Roles = allRoles
+                Id = id, //employee id
+                Roles = allRoles //list of all roles, not just the ones assigned to the employee
             };
             return model;
         }
@@ -104,23 +107,33 @@
         {
             if (!ModelState.IsValid)
             {
+                //The model was not valid
+                //Create the model from scratch again for the Employee using their id
+                //So we can show the edit page again.
                 model = await CreateEmployeeEditRoleModel(model.Id);
 
                 return View(model);
             }
 
+            //Delete all roles for the employee
             _dbContext.EmployeeRole
                 .RemoveRange(_dbContext
                     .EmployeeRole
                     .Where(er => er.Employee.Id == model.Id));
 
+            _dbContext.SaveChanges();
+
+            //Get the employee based on their id
             var employee = await _dbContext.Employee
                 .SingleOrDefaultAsync(e => e.Id == model.Id);
 
+            //Loop through the roles that were selected / check on the EditRoles View
             foreach (var roleId in model.SelectedRoles)
             {
                 var employeeRole = new EmployeeRole
                 {
+                    EmployeeId = employee.Id,
+                    RoleId =  roleId,
                     Employee = employee,
                     Role = await _dbContext.Role.SingleOrDefaultAsync(r => r.Id == roleId)
                 };

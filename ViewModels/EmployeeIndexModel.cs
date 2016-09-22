@@ -1,6 +1,5 @@
 ﻿namespace EmployeeDirectory.ViewModels
 {
-    using System;
     using Domain;
 
     public class EmployeeIndexModel

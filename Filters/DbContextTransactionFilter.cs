@@ -1,7 +1,6 @@
 ﻿namespace EmployeeDirectory.Filters
 {
     using System;
-    using System.Threading.Tasks;
     using Infrastructure;
     using Microsoft.AspNetCore.Mvc.Filters;
 

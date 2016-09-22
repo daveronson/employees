@@ -1,6 +1,5 @@
 ﻿namespace EmployeeDirectory.ViewModels
 {
-    using System;
     using System.ComponentModel.DataAnnotations;
     using Domain;
 

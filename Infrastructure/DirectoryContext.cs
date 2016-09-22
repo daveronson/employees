@@ -1,5 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Infrastructure;
 using EmployeeDirectory.Domain;
 
 
@@ -16,7 +15,7 @@ namespace EmployeeDirectory.Infrastructure
         {
             base.OnModelCreating(modelbuilder);
 
-            //modelbuilder.Entity<FamilyFriend>().HasKey(x => new { x.FamilyID, x.FriendID });
+            modelbuilder.Entity<EmployeeRole>().HasKey(x => new { x.EmployeeId, x.RoleId });
         }  
         public DbSet<Employee> Employee {get; set; }
         public DbSet<Role> Role { get; set; }

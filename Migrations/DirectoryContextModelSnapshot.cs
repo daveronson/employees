@@ -43,14 +43,13 @@ namespace employees.Migrations
 
             modelBuilder.Entity("EmployeeDirectory.Domain.EmployeeRole", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
+                    b.Property<int>("EmployeeId");
 
-                    b.Property<int?>("EmployeeId");
+                    b.Property<int>("RoleId");
 
-                    b.Property<int?>("RoleId");
+                    b.Property<int>("Id");
 
-                    b.HasKey("Id");
+                    b.HasKey("EmployeeId", "RoleId");
 
                     b.HasIndex("EmployeeId");
 
@@ -78,7 +77,7 @@ namespace employees.Migrations
 
                     b.Property<int>("Permission");
 
-                    b.Property<int?>("RoleId");
+                    b.Property<int>("RoleId");
 
                     b.HasKey("Id");
 
@@ -91,18 +90,21 @@ namespace employees.Migrations
                 {
                     b.HasOne("EmployeeDirectory.Domain.Employee", "Employee")
                         .WithMany("EmployeeRoles")
-                        .HasForeignKey("EmployeeId");
+                        .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("EmployeeDirectory.Domain.Role", "Role")
                         .WithMany()
-                        .HasForeignKey("RoleId");
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("EmployeeDirectory.Domain.RolePermission", b =>
                 {
                     b.HasOne("EmployeeDirectory.Domain.Role", "Role")
                         .WithMany("RolePermissions")
-                        .HasForeignKey("RoleId");
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
         }
     }

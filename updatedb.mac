@@ -1,0 +1,7 @@
+#!/bin/bash
+#Updates the local SQLite database using the latest migration scripts
+rm ./employeeDirectory.db
+rm ./Migrations/*
+dotnet ef migrations add Initial
+dotnet ef database update
+sqlite3 employeeDirectory.db < DbScripts/PopulateData.sql

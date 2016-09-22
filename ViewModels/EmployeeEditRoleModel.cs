@@ -1,13 +1,12 @@
 ﻿namespace EmployeeDirectory.ViewModels
 {
-    using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.Linq;
 
     public class EmployeeEditRoleModel : IValidatableObject
     {
-        public int Id { get; set; }
+        public int Id { get; set; } //EmployeeID
 
         public List<int> SelectedRoles { get; set; } = new List<int>();
         public List<EmployeeRoleModel> Roles { get; set; }
