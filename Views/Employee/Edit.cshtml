@@ -1,0 +1,62 @@
+﻿@using System.Threading.Tasks
+@using EmployeeDirectory.Controllers
+@using EmployeeDirectory.Domain
+@model EmployeeDirectory.ViewModels.EmployeeEditModel
+
+@{
+    ViewBag.Title = "Edit Employee";
+}
+
+<h2>Edit Employee</h2>
+
+@using (Html.BeginForm(FormMethod.Post, new { @class="form-horizontal"}))
+{
+    @Html.ValidationSummary(true)
+
+    <div class="form-group">
+        @Html.Label(m => m.FirstName)
+        <div class="col-md-10">
+            @Html.Input(m => m.FirstName)
+            @Html.ValidationMessageFor(m => m.FirstName, null, new {@class = "text-danger"})
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.Label(m => m.LastName)
+        <div class="col-md-10">
+            @Html.Input(m => m.LastName)
+            @Html.ValidationMessageFor(m => m.LastName, null, new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.Label(m => m.Title)
+        <div class="col-md-10">
+            @Html.Input(m => m.Title)
+            @Html.ValidationMessageFor(m => m.Title, null, new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.Label(m => m.Office)
+        <div class="col-md-10">
+            @Html.Input(m => m.Office)
+            @Html.ValidationMessageFor(m => m.Office, null, new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.Label(m => m.Email)
+        <div class="col-md-10">
+            @Html.Input(m => m.Email)
+            @Html.ValidationMessageFor(m => m.Email, null, new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.Label(m => m.PhoneNumber)
+        <div class="col-md-10">
+            @Html.Input(m => m.PhoneNumber)
+            @Html.ValidationMessageFor(m => m.PhoneNumber, null, new {@class = "text-danger"})
+        </div>
+    </div>
+    @(Html.ButtonGroup(
+        Html.PrimaryButton("Save"), 
+        Html.LinkButton("Cancel", Url.Action(nameof(EmployeeController.Index))
+    )))
+}

@@ -1,0 +1,61 @@
+﻿@using EmployeeDirectory.Domain;
+@model List<EmployeeDirectory.ViewModels.EmployeeIndexModel>
+
+@{
+    ViewBag.Title = "Employees";
+}
+
+<h2>Employees</h2>
+
+<form asp-action="Index" method="get">
+    <select name="office" asp-items="Html.GetEnumSelectList<EmployeeDirectory.Domain.Office>()">
+        <option value="">-none-</option>
+    </select>
+    <button type="submit">Filter</button>
+</form>
+<table class="table">
+    <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Title</th>
+        <th>Office</th>
+        <th></th>
+    </tr>
+
+    @foreach (var employee in Model)
+    {
+        <tr>
+            <td>@employee.FirstName</td>
+            <td>@employee.LastName</td>
+            <td>@employee.Title</td>
+            <td>@employee.Office</td>
+            <td>
+                <ul class="list-unstyled">
+                    <li><a asp-action="Details" asp-controller="Employee" asp-route-id="@employee.Id">Details</a></li>
+                    <li asp-permission="EditEmployees"><a asp-action="Edit" asp-controller="Employee" asp-route-id="@employee.Id">Edit</a></li>
+                    <li asp-permission="ManageSecurity"><a asp-action="EditRoles" asp-controller="Employee" asp-route-id="@employee.Id">Edit Roles</a></li>
+                </ul>
+            </td>
+        </tr>
+    }
+</table>
+@section scripts
+{
+    <style>
+        ul.list-unstyled {
+            margin-bottom: 0;
+        }
+
+        ul.list-unstyled li {
+            display: inline;
+        }
+
+        ul.list-unstyled li:after {
+            content: " |";
+        }
+
+        ul.list-unstyled li:last-child:after {
+            content: "";
+        }
+    </style>
+}

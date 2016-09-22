@@ -1,0 +1,28 @@
+﻿@model EmployeeDirectory.ViewModels.EmployeeDetailsModel
+
+@{
+    ViewBag.Title = "Employee Details";
+}
+
+<h2>Employee Details</h2>
+
+<div>
+    <h4>View employee details</h4>
+    <hr/>
+    <dl class="dl-horizontal">
+        <dt>First Name:</dt>
+        <dd>@Model.FirstName</dd>
+        <dt>Last Name:</dt>
+        <dd>@Model.LastName</dd>
+        <dt>Title:</dt>
+        <dd>@Model.Title</dd>
+        <dt>Office:</dt>
+        <dd>@Model.Office</dd>
+        <dt>Email:</dt>
+        <dd>@Model.Email</dd>
+        <dt>Phone Number:</dt>
+        <dd>@Model.PhoneNumber</dd>
+        <dt>Roles:</dt>
+        <dd>@string.Join(", ", Model.EmployeeRoles.Select(er => er.RoleName))</dd>
+    </dl>
+</div>

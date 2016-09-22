@@ -1,0 +1,4 @@
+#!/bin/bash
+#Starts a local web server in development mode
+export ASPNETCORE_ENVIRONMENT=Development
+dotnet run

@@ -1,0 +1,30 @@
+﻿@using System.Threading.Tasks
+@using EmployeeDirectory.Controllers
+@using EmployeeDirectory.Domain
+@using EmployeeDirectory.ViewModels
+@model EmployeeDirectory.ViewModels.EmployeeEditRoleModel
+
+@{
+    ViewBag.Title = "Edit Roles";
+}
+
+<h2>Edit Roles</h2>
+
+@using (Html.BeginForm(FormMethod.Post, new {@class = "form-horizontal"}))
+{
+    @Html.HiddenFor(m => m.Id)
+    @Html.ValidationSummary(true, null, new { @class="text-danger"})
+    foreach (var role in Model.Roles)
+    {
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" name="@nameof(EmployeeEditRoleModel.SelectedRoles)" checked="@role.IsSelected" value="@role.Id"/>
+                @role.Name
+            </label>
+        </div>
+    }
+    @(Html.ButtonGroup(
+        Html.PrimaryButton("Save"),
+        Html.LinkButton("Cancel", Url.Action(nameof(EmployeeController.Index))
+    )))
+}
