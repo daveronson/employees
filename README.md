@@ -12,10 +12,10 @@ $ chmod 755 web.mac
 $ ./updatedb.mac  
 $ ./web.mac  
 
-Windows Instructions
+Windows Instructions:  
 Open a cmd prompt and navigate to employees directory  
-> dotnet restore
-> dotnet ef migrations add Initial
-> dotnet ef database update
-> sqlite3 employeeDirectory < DbScripts/PopulateData.sql
-> dotnet run
+> dotnet restore  
+> dotnet ef migrations add Initial  
+> dotnet ef database update  
+> sqlite3 employeeDirectory.db < DbScripts/PopulateData.sql  
+> dotnet run  
