@@ -1,4 +1,5 @@
-﻿namespace EmployeeDirectory.ViewModels
+﻿/*
+namespace EmployeeDirectory.ViewModels
 {
     using AutoMapper;
     using Domain;
@@ -11,7 +12,9 @@
             CreateMap<EmployeeRole, EmployeeDetailsModel.EmployeeRoleModel>();
             CreateMap<Employee, EmployeeEditModel>().ReverseMap();
             CreateMap<Employee, EmployeeIndexModel>();
+            CreateMap<Employee, EmployeeRepresentationModel>();
         }
         
     }
 }
+*/

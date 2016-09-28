@@ -1,4 +1,4 @@
-﻿namespace EmployeeDirectory.ViewModels
+namespace EmployeeDirectory.ViewModels
 {
     public class AccountLoginModel
     {

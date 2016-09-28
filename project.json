@@ -15,7 +15,7 @@
     "Microsoft.AspNetCore.Server.IISIntegration": "1.0.0",
     "Microsoft.AspNetCore.Server.Kestrel": "1.0.1",
     "Microsoft.AspNetCore.StaticFiles": "1.0.0",
-        "Microsoft.EntityFrameworkCore.Sqlite": "1.0.0",
+    "Microsoft.EntityFrameworkCore.Sqlite": "1.0.0",
     "Microsoft.EntityFrameworkCore.Tools": {
       "version": "1.0.0-preview2-final",
       "type": "build"
@@ -30,7 +30,8 @@
     "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0",
     "AutoMapper": "5.1.1",
     "AutoMapper.Extensions.Microsoft.DependencyInjection": "1.1.0",
-    "HtmlTags.AspNetCore": "4.2.0"
+    "HtmlTags.AspNetCore": "4.2.0", 
+    "MediatR.Extensions.Microsoft.DependencyInjection": "1.0.1"
   },
 
   "tools": {
@@ -43,7 +44,9 @@
         "portable-net451+win8"
       ]
     },
-    
+    "Microsoft.DotNet.Watcher.Tools": {
+      "version": "1.0.0-preview2-final"
+    }
   },
 
   "frameworks": {

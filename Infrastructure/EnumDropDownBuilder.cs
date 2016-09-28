@@ -11,7 +11,6 @@
         public override bool Matches(ElementRequest subject)
         {
             return subject.Accessor.PropertyType.GetTypeInfo().IsEnum;
-            //return subject.Accessor.PropertyType.IsEnum;
         }
 
         public override HtmlTag Build(ElementRequest request)

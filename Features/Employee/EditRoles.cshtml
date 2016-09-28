@@ -1,8 +1,7 @@
-﻿@using System.Threading.Tasks
+@using System.Threading.Tasks
 @using EmployeeDirectory.Controllers
-@using EmployeeDirectory.Domain
-@using EmployeeDirectory.ViewModels
-@model EmployeeDirectory.ViewModels.EmployeeEditRoleModel
+@using EmployeeDirectory.Features.Employee
+@model EditRoles.Command
 
 @{
     ViewBag.Title = "Edit Roles";
@@ -18,7 +17,7 @@
     {
         <div class="checkbox">
             <label>
-                <input type="checkbox" name="@nameof(EmployeeEditRoleModel.SelectedRoles)" checked="@role.IsSelected" value="@role.Id"/>
+                <input type="checkbox" name="@nameof(EditRoles.Command.SelectedRoles)" checked="@role.IsSelected" value="@role.Id"/>
                 @role.Name
             </label>
         </div>

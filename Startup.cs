@@ -15,6 +15,10 @@ namespace EmployeeDirectory
     using Microsoft.EntityFrameworkCore;
     using Services;
     using System.IO;
+    using MediatR;
+    using Microsoft.AspNetCore.Mvc.Razor;
+    using Features.Employee;
+
     public class Startup
     {
         public IConfigurationRoot Configuration { get; set; }
@@ -45,6 +49,11 @@ namespace EmployeeDirectory
                 opt.Filters.Add(typeof(DbContextTransactionFilter));
             });
 
+            services.Configure<RazorViewEngineOptions>(o =>
+            {
+                o.ViewLocationExpanders.Add(new FeatureFolderViewExpander());
+            });
+
             var employeeDirectoryConnectionString = "Data Source=" + Path.Combine(hostingEnvironment.ContentRootPath, "employeeDirectory.db");
 
             services.AddDbContext<DirectoryContext>(builder =>
@@ -52,7 +61,11 @@ namespace EmployeeDirectory
 
             //services.AddScoped(_ => new DirectoryContext(Configuration["Data:DefaultConnection:ConnectionString"]));
             
+            services.AddTransient<EditRoles.CommandFactory>();
+
             services.AddAutoMapper();
+
+            services.AddMediatR(typeof(Startup));
 
             services.AddHtmlTags(reg =>
             {
