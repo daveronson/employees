@@ -1,5 +1,5 @@
 # employees
-A pure .NET Core 1.0 version of Jimmy Bogard's EmployeeDirectory app  
+A pure .NET Core 1.1 version of Jimmy Bogard's EmployeeDirectory app  
 
 Prerequisites  
 Install SQLite tools and set the path so you can run sqlite3: https://www.sqlite.org/download.html  
